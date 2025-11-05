@@ -16,18 +16,20 @@ const Header = () => {
 
         <div className='flex items-center space-x-2 md:space-x-4'>
           <SignedIn>
-            <Link href={"/dashboard"}>
-            <Button>
-                <LayoutDashboard className='h-4 w-4'/>
-                <span className='hidden md:block'>
-                  Industry Insigths
-                </span>
+            <Button asChild variant={"outline"}>
+              <Link href={"/dashboard"}>
+                <>
+                  <LayoutDashboard className='h-4 w-4'/>
+                  <span className='hidden md:block'>
+                    Industry Insigths
+                  </span>
+                </>
+              </Link>
             </Button>
-            </Link>
-          </SignedIn>
+
 
           <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger asChild>
               <Button>
                 <StarsIcon className='h-4 w-4'/>
                 <span className='hidden md:block'>
@@ -57,14 +59,27 @@ const Header = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </div>
-      </nav>
+          </SignedIn>
+
       <SignedOut>
-        <SignInButton />
+        <SignInButton>
+          <Button variant={"outline"}>Sign In</Button>
+        </SignInButton>
       </SignedOut>
         <SignedIn>
-          <UserButton />
+          <UserButton 
+            appearance={{
+              elements:{
+                avatarBox:'w-10 h-10',
+                userButtonPopoverCard:'shadow-xl',
+                userPreviewMainIdentifier:'font-semibold',
+              },
+            }}
+            afterSignOutUrl='/'
+          />
         </SignedIn>
+        </div>
+      </nav>
     </header>
   )
 }
