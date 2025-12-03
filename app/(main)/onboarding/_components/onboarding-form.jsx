@@ -31,7 +31,7 @@ const OnboardingForm = ({ industries }) => {
         <CardTitle className={"gradient-title text-4xl "}>Complete Your Profile</CardTitle>
         <CardDescription>Select your industry to get personalized career insights and recommendations.</CardDescription>
       </CardHeader>
-      <CardContent className={"flex"}>
+      <CardContent>
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-2">
             <Label htmlFor="industry">Industry</Label>
