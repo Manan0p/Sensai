@@ -9,6 +9,8 @@ import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 
 const OnboardingForm = ({ industries }) => {
   const [selectedIndustry, setselectedIndustry] = useState(null);
@@ -93,13 +95,16 @@ const OnboardingForm = ({ industries }) => {
 
           <div className="space-y-2">
             <Label htmlFor="bio">Professional Bio</Label>
-            <Input id="bio" placeholder="Tell us about your professional background" {...register("bio")}></Input>
-            <p className="text-sm text-muted-foreground">Seperate multiple skills with commas</p>
+            <Textarea id="bio" placeholder="Tell us about your professional background" className={"h-32"} {...register("bio")}></Textarea>
 
             {errors.bio && (
               <p className="text-sm text-red-500">{errors.bio.message}</p>
             )}
           </div>
+
+          <Button type="submit" className={"w-full"}>
+            Complete Profile
+          </Button>
         </form>
       </CardContent>
     </Card>
