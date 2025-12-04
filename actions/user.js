@@ -2,6 +2,7 @@
 
 import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
+import { generateAIInsights } from "./dashboard";
 
 export async function updateUser(data) {
     const {userId} = await auth();
@@ -29,18 +30,31 @@ export async function updateUser(data) {
                 });
 
                 if (!industryInsight){
-                    industryInsight = await tx.industryInsight.create({
+                    const insights = await generateAIInsights(data.industry);
+                    // Normalize enum-like strings from AI to Prisma enums
+                    const normalizeDemand = (v) => {
+                        const s = String(v || "").toUpperCase();
+                        if (["HIGH","MEDIUM","LOW"].includes(s)) return s;
+                        return "MEDIUM"; // sensible default
+                    };
+                    const normalizeOutlook = (v) => {
+                        const s = String(v || "").toUpperCase();
+                        if (["POSITIVE","NEUTRAL","NEGATIVE"].includes(s)) return s;
+                        return "NEUTRAL";
+                    };
+
+                    industryInsight = await db.industryInsight.create({
                         data:{
                             industry: data.industry,
-                            salaryRanges: [], // Default empty array
-                            growthRate: 0, // Default value
-                            demandLevel: "MEDIUM", // Default value
-                            topSkills: [], // Default empty array
-                            marketOutlook: "NEUTRAL", // Default value
-                            keyTrends: [], // Default empty array
-                            recommendedSkills: [], // Default empty array
+                            salaryRanges: insights.salaryRanges,
+                            growthRate: insights.growthRate,
+                            demandLevel: normalizeDemand(insights.demandLevel),
+                            topSkills: insights.topSkills,
+                            marketOutlook: normalizeOutlook(insights.marketOutlook),
+                            keyTrends: insights.keyTrends,
+                            recommendedSkills: insights.recommendedSkills,
                             nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
-                        },
+                        }
                     });
                 }
 
