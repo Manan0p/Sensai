@@ -3,6 +3,7 @@
 import { db } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { includes } from "zod";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
@@ -48,6 +49,9 @@ export async function getIndustryInsights() {
         where: {
             clerkUserId: userId,
         },
+        include: {
+            industryInsight: true,
+        }
     });
 
     if (!user) throw new Error("User not found");
