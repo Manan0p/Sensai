@@ -1,6 +1,6 @@
 "use client";
 
-import { BriefcaseIcon, LineChart, TrendingDown, TrendingUp } from 'lucide-react';
+import { Brain, BriefcaseIcon, LineChart, TrendingDown, TrendingUp } from 'lucide-react';
 import React from 'react'
 import { format, formatDistanceToNow } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
@@ -89,12 +89,18 @@ const DashboardView = ({insights}) => {
 
             <Card>
                 <CardHeader className={"flex items-center flex-row justify-between space-y-0 pb-2"}>
-                    <CardTitle className={"text-sm font-medium"}>Market Outlook</CardTitle>
-                    <OutlookIcon className={`h-4 w-4 ${outlookColor}`} />
+                    <CardTitle className={"text-sm font-medium"}>Top Skills</CardTitle>
+                    <Brain className={`h-4 w-4 text-muted-foreground`} />
                 </CardHeader>
                 <CardContent>
-                    <div className='text-2xl font-bold'>{insights.marketOutlook}</div>
-                    <p className='text-xs text-muted-foreground'>Next Update {nextUpdateDistance}</p>
+                    <div className='flex flex-wrap gap-1'>
+                        {insights.topSkills.map((skill) =>(
+                            <Badge variant={"secondary"} key={skill}>
+                                {skill}
+                            </Badge>
+                        ))}
+                    </div>
+                    
                 </CardContent>
             </Card>
         </div>
