@@ -89,14 +89,14 @@ const DashboardView = ({insights}) => {
             </Card>
 
             <Card>
-                <CardHeader className={"flex items-center flex-row justify-between space-y-0 pb-2"}>
+                <CardHeader className={"flex items-center flex-row justify-between space-y-0"}>
                     <CardTitle className={"text-sm font-medium"}>Top Skills</CardTitle>
                     <Brain className={`h-4 w-4 text-muted-foreground`} />
                 </CardHeader>
                 <CardContent>
                     <div className='flex flex-wrap gap-1'>
                         {insights.topSkills.map((skill) =>(
-                            <Badge variant={"secondary"} key={skill}>
+                            <Badge variant={"secondary"} key={skill} className={"px-3 py-2 text-xs"}>
                                 {skill}
                             </Badge>
                         ))}
@@ -142,6 +142,40 @@ const DashboardView = ({insights}) => {
                 </CardContent>
             </Card>
 
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Key Industry Trends</CardTitle>
+                        <CardDescription>Current trends shaping the industry</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <ul className='space-y-4'>
+                            {insights.keyTrends.map((trend, index) =>(
+                                <li key={index} className='flex items-start space-x-2'>
+                                    <div className='h-2 w-2 mt-2 rounded-full bg-primary' />
+                                    <span>{trend}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </CardContent>
+                </Card>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Recommended Skills</CardTitle>
+                        <CardDescription>Skills to consider developing</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div className='flex gap-2 flex-wrap'>
+                            {insights.recommendedSkills.map((skill) =>(
+                                <Badge key={skill} variant="secondary" className="rounded-full px-4 py-2 text-sm bg-muted text-foreground">
+                                    {skill}
+                                </Badge>
+                            ))}
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
     </div>
   )
 };
