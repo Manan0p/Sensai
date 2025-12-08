@@ -3,6 +3,8 @@
 import { LineChart, TrendingDown, TrendingUp } from 'lucide-react';
 import React from 'react'
 import { format, formatDistanceToNow } from 'date-fns';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const DashboardView = ({insights}) => {
     const salaryData = insights.salaryRanges.map((range) =>({
@@ -46,7 +48,23 @@ const DashboardView = ({insights}) => {
 
 
   return (
-    <div>DashboardView</div>
+    <div className='space-y-6'>
+        <div className='flex justify-between items-center'>
+            <Badge variant="outline">Last Updated: {lastUpdatedDate}</Badge>
+        </div>
+        <div>
+            <Card>
+                <CardHeader>
+                    <CardTitle>Card Title</CardTitle>
+                    <CardDescription>Card Description</CardDescription>
+                    <CardAction>Card Action</CardAction>
+                </CardHeader>
+                <CardContent>
+                    <p>Card Content</p>
+                </CardContent>
+            </Card>
+        </div>
+    </div>
   )
 };
 
