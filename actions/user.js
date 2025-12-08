@@ -31,28 +31,10 @@ export async function updateUser(data) {
 
                 if (!industryInsight){
                     const insights = await generateAIInsights(data.industry);
-                    // Normalize enum-like strings from AI to Prisma enums
-                    const normalizeDemand = (v) => {
-                        const s = String(v || "").toUpperCase();
-                        if (["HIGH","MEDIUM","LOW"].includes(s)) return s;
-                        return "MEDIUM"; // sensible default
-                    };
-                    const normalizeOutlook = (v) => {
-                        const s = String(v || "").toUpperCase();
-                        if (["POSITIVE","NEUTRAL","NEGATIVE"].includes(s)) return s;
-                        return "NEUTRAL";
-                    };
-
                     industryInsight = await db.industryInsight.create({
                         data:{
                             industry: data.industry,
-                            salaryRanges: insights.salaryRanges,
-                            growthRate: insights.growthRate,
-                            demandLevel: normalizeDemand(insights.demandLevel),
-                            topSkills: insights.topSkills,
-                            marketOutlook: normalizeOutlook(insights.marketOutlook),
-                            keyTrends: insights.keyTrends,
-                            recommendedSkills: insights.recommendedSkills,
+                            ...insights,
                             nextUpdate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
                         }
                     });
