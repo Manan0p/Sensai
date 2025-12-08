@@ -6,7 +6,7 @@ import { format, formatDistanceToNow } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Bar, BarChart, CartesianGrid, Legend, Rectangle, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Legend, Rectangle, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 const DashboardView = ({insights}) => {
     const salaryData = insights.salaryRanges.map((range) =>({
@@ -111,24 +111,33 @@ const DashboardView = ({insights}) => {
                     <CardDescription>Displaying minimum, median and maximum salaries(in thousands)</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <div className='h-[400px]  '>
-                        <BarChart responsive data={salaryData}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis width="auto" />
-                            <Tooltip content={({active, payload, label})=>{
-                                if (active && payload && payload.length){
-                                    return (
-                                        <div className='bg-background border rounded-lg p-2 shadow-md'>
-                                            <p className='font-medium'>{label}</p>
-                                            {}
-                                        </div>
-                                    )
-                                }
-                            }} />
-                            <Bar dataKey="pv" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-                            <Bar dataKey="uv" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
-                        </BarChart>
+                    <div className='h-[400px]'>
+                        <ResponsiveContainer width="100%" height="100%">
+                            <BarChart data={salaryData}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="name" />
+                                <YAxis width={60} />
+                                <Tooltip content={({active, payload, label})=>{
+                                    if (active && payload && payload.length){
+                                        return (
+                                            <div className='bg-background border rounded-lg p-2 shadow-md'>
+                                                <p className='font-medium'>{label}</p>
+                                                {payload.map((item) => (
+                                                    <p key={item.name} className='text-sm'>
+                                                        {item.name}: ${item.value}k
+                                                    </p>
+                                                ))}
+                                            </div>
+                                        );
+                                    }
+
+                                    return null;
+                                }} />
+                                <Bar dataKey="min" fill="#94a2b8" name="Min Salary (K)" />
+                                <Bar dataKey="median" fill="#64748b" name="Median Salary (K)" />
+                                <Bar dataKey="max" fill="#475569" name="Max Salary (K)" />
+                            </BarChart>
+                        </ResponsiveContainer>
                     </div>
                 </CardContent>
             </Card>
