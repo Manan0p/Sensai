@@ -94,9 +94,9 @@ const DashboardView = ({insights}) => {
                     <Brain className={`h-4 w-4 text-muted-foreground`} />
                 </CardHeader>
                 <CardContent>
-                    <div className='flex flex-wrap gap-1'>
-                        {insights.topSkills.map((skill) =>(
-                            <Badge variant={"secondary"} key={skill} className={"px-3 py-2 text-xs"}>
+                    <div className='flex flex-wrap gap-x-1 gap-y-2'>
+                        {insights.topSkills.slice(0,3).map((skill) =>(
+                            <Badge variant={"secondary"} key={skill} className="rounded-full px-3 py-1 text-sm bg-muted text-foreground">
                                 {skill}
                             </Badge>
                         ))}
