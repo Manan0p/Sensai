@@ -6,6 +6,7 @@ import { format, formatDistanceToNow } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from 'recharts';
 
 const DashboardView = ({insights}) => {
     const salaryData = insights.salaryRanges.map((range) =>({
@@ -100,10 +101,40 @@ const DashboardView = ({insights}) => {
                             </Badge>
                         ))}
                     </div>
-                    
                 </CardContent>
             </Card>
         </div>
+
+        <Card>
+                <CardHeader>
+                    <CardTitle>Salary Ranges by Role</CardTitle>
+                    <CardDescription>Displaying minimum, median and maximum salaries(in thousands)</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div>
+                        <BarChart
+                            style={{ width: '100%', maxWidth: '700px', maxHeight: '70vh', aspectRatio: 1.618 }}
+                            responsive
+                            data={data}
+                            margin={{
+                                top: 5,
+                                right: 0,
+                                left: 0,
+                                bottom: 5,
+                            }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis width="auto" />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="pv" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+                            <Bar dataKey="uv" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
+                        </BarChart>
+                    </div>
+                </CardContent>
+            </Card>
+
     </div>
   )
 };
