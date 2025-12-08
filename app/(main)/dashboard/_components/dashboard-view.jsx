@@ -1,10 +1,11 @@
 "use client";
 
-import { LineChart, TrendingDown, TrendingUp } from 'lucide-react';
+import { BriefcaseIcon, LineChart, TrendingDown, TrendingUp } from 'lucide-react';
 import React from 'react'
 import { format, formatDistanceToNow } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
 
 const DashboardView = ({insights}) => {
     const salaryData = insights.salaryRanges.map((range) =>({
@@ -71,18 +72,18 @@ const DashboardView = ({insights}) => {
                 </CardHeader>
                 <CardContent>
                     <div className='text-2xl font-bold'>{insights.growthRate.toFixed(1)}%</div>
-                    
+                     <Progress value={insights.growthRate} className={"mt-2"} />
                 </CardContent>
             </Card>
 
             <Card>
                 <CardHeader className={"flex items-center flex-row justify-between space-y-0 pb-2"}>
-                    <CardTitle className={"text-sm font-medium"}>Market Outlook</CardTitle>
-                    <OutlookIcon className={`h-4 w-4 ${outlookColor}`} />
+                    <CardTitle className={"text-sm font-medium"}>Demand Level</CardTitle>
+                    <BriefcaseIcon className={`h-4 w-4 text-muted-foreground`} />
                 </CardHeader>
                 <CardContent>
-                    <div className='text-2xl font-bold'>{insights.marketOutlook}</div>
-                    <p className='text-xs text-muted-foreground'>Next Update {nextUpdateDistance}</p>
+                    <div className='text-2xl font-bold'>{insights.demandLevel}</div>
+                    <div className={`h-2 w-full rounded-full mt-2 ${getDemandLevelColor(insights.demandLevel)}`}></div>
                 </CardContent>
             </Card>
 
