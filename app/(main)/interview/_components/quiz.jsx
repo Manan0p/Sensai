@@ -3,13 +3,15 @@
 import { generateQuiz } from "@/actions/interview";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import useFetch from "@/hooks/use-fetch";
 import { useEffect, useState } from "react";
 import { BarLoader } from "react-spinners";
 
 const Quiz = () => {
 
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
   const [showExplanations, setShowExplanations] = useState(false);
   
@@ -42,15 +44,37 @@ const Quiz = () => {
           </p>
         </CardContent>
         <CardFooter>
-          <Button className={"w-full"} onclick={generateQuizFn} >Start Quiz</Button>
+          <Button className={"w-full"} onClick={generateQuizFn} >Start Quiz</Button>
         </CardFooter>
       </Card>
     )
   }
 
+  const question = quizData[currentQuestion];
+
 
   return (
-    <div>Quiz</div>
+    <Card className={"mx-2 "}>
+        <CardHeader>
+          <CardTitle>Question {currentQuestion + 1} of {quizData.length} </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-lg font-medium">{question.question}</p>
+          <RadioGroup className={"space-y-2"}>
+            {question.options.map((option, index) => {
+              return (
+                <div className="flex items-center space-x-2" key={index}>
+                  <RadioGroupItem value={option} id={`option-${index}`} />
+                  <Label htmlFor={`option-${index}`}>{option}</Label>
+                </div>
+              );
+            })}
+          </RadioGroup>
+        </CardContent>
+        <CardFooter>
+          <Button className={"w-full"} onClick={generateQuizFn} >Start Quiz</Button>
+        </CardFooter>
+      </Card>
   )
 }
 

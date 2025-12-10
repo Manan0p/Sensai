@@ -7,8 +7,8 @@ import { is } from "zod/v4/locales";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-pro",
-})
+    model: "gemini-2.0-flash",
+}, { apiVersion: "v1" });
 
 export async function generateQuiz() {
     const {userId} = await auth();
@@ -58,8 +58,16 @@ export async function generateQuiz() {
         return quiz.questions;
 
     } catch (error) {
-        console.error("Error generating quiz:", error);
-        throw new Error("Failed to generate quiz");
+        console.error("Error generating quiz:", error.message || error);
+        
+        if (error.message?.includes("quota")) {
+            throw new Error("API quota exceeded. Please try again in a few moments or upgrade your plan.");
+        }
+        if (error.message?.includes("401") || error.message?.includes("Unauthorized")) {
+            throw new Error("Invalid API key. Please check your GEMINI_API_KEY.");
+        }
+        
+        throw new Error(`Failed to generate quiz: ${error.message || error}`);
     }
 }
 

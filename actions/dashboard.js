@@ -7,8 +7,8 @@ import { includes } from "zod";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-pro",
-})
+    model: "gemini-2.0-flash",
+}, { apiVersion: "v1" });
 
 export const generateAIInsights = async(industry)=> {
     const prompt = `
