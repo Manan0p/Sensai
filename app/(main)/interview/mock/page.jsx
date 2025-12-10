@@ -14,7 +14,7 @@ const MockInterviewPage = () => {
           </Button>
         </Link>
 
-        <div>
+        <div className="container mx-auto space-y-4 py-6">
           <h1 className="text-6xl font-bold gradient-title">Mock Interview</h1>
           <p className="text-muted-foreground">
             Test your knowledge with industry-specific questions
