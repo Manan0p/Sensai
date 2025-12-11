@@ -28,7 +28,7 @@ const Quiz = () => {
   }, [quizData]);
 
   if (generatingQuiz){
-    return <BarLoader className="mt-4" width={"100%"} colour="gray"/>
+    return <BarLoader className="mt-4" width={"100%"} color="gray"/>
   }
 
   if (!quizData) {

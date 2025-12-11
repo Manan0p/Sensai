@@ -6,9 +6,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { is } from "zod/v4/locales";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash",
-}, { apiVersion: "v1" });
+const model = genAI.getGenerativeModel({model: "gemini-2.5-flash"});
 
 export async function generateQuiz() {
     const {userId} = await auth();
