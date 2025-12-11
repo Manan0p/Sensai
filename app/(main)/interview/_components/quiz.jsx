@@ -6,6 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import useFetch from "@/hooks/use-fetch";
+import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BarLoader } from "react-spinners";
 import { toast } from "sonner";
@@ -28,6 +29,8 @@ const Quiz = () => {
     data: resultData,
     setData: setResultData,
   } = useFetch(saveQuizResult);
+
+  console.log(resultData);
 
   useEffect(() =>{
     if (quizData) {
@@ -132,7 +135,8 @@ const Quiz = () => {
             </Button>
           )}
 
-          <Button onClick={handleNext} className={"ml-auto"} disabled={!answers[currentQuestion]} >
+          <Button onClick={handleNext} className={"ml-auto"} disabled={!answers[currentQuestion] || savingResult} >
+            {savingResult && <Loader2 className="mr-2 h-4 w-4 animate-spin" /> }
             {currentQuestion < quizData.length -1 ? "Next Question" : "Finish Quiz"}
           </Button>
         </CardFooter>
