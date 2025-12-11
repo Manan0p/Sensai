@@ -91,7 +91,7 @@ export async function saveQuizResult(questions, answers, score) {
         answer: q.correctAnswer,
         userAnswer: answers[index],
         isCorrect: q.correctAnswer === answers[index],
-        explaination: q.explanation,
+        explanation: q.explanation,
     }));
 
     const wrongAnswers = questionsResults.filter((q) => !q.isCorrect);
