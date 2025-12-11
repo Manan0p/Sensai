@@ -8,6 +8,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import useFetch from "@/hooks/use-fetch";
 import { useEffect, useState } from "react";
 import { BarLoader } from "react-spinners";
+import { toast } from "sonner";
 
 const Quiz = () => {
 
@@ -45,12 +46,30 @@ const Quiz = () => {
       setCurrentQuestion(currentQuestion +1);
       setShowExplanation(false);
     } else {
-      finishQuiz()
+      finishQuiz();
     }
   };
 
-  const finishQuiz = ()=>{
-    const score
+  const calculateScore = ()=>{
+    let correct = 0;
+    answers.forEach((answer, index) => {
+      if (answer === quizData[index].correctAnswer){
+        correct++;
+      }
+    });
+    return (correct / quizData.length) * 100;
+  };
+
+
+  const finishQuiz = async ()=>{
+    const score = calculateScore();
+
+    try {
+      await saveQuizResultFn(quizData, answers, score);
+      toast.success("Quiz completed!");
+    } catch (error) {
+      toast.error(error.message || "Failed to save quiz results");
+    }
   };
 
   if (generatingQuiz){
@@ -113,7 +132,7 @@ const Quiz = () => {
             </Button>
           )}
 
-          <Button onClick={(handleNext) => setShowExplanation(true)} className={"ml-auto"} disabled={!answers[currentQuestion]} >
+          <Button onClick={handleNext} className={"ml-auto"} disabled={!answers[currentQuestion]} >
             {currentQuestion < quizData.length -1 ? "Next Question" : "Finish Quiz"}
           </Button>
         </CardFooter>
