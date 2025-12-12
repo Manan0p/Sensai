@@ -41,4 +41,16 @@ export const entrySchema = z.object({
     endDate: z.string().optional(),
     description: z.string().min(1, "Description is required"),
     current: z.boolean().default(false),
-});
+})
+ .refine(
+    (data)=>{
+        if (!data.current && !data.endDate){
+            return false;
+        }
+        return true;
+    },
+    {
+        message: "End date is required unless this is your current position",
+        path: ["endDate"],
+    }
+);
