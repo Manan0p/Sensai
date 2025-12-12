@@ -1,7 +1,11 @@
 "use client";
 
+import { saveResume } from "@/actions/resume";
+import { resumeSchema } from "@/app/lib/schema";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import useFetch from "@/hooks/use-fetch";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Download, Save } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -9,7 +13,24 @@ import { useForm } from "react-hook-form";
 const ResumeBuilder = ({initialContent}) => {
     const [activeTab, setActiveTab] = useState("edit");
 
-    useForm()
+    const {control, register, handleSubmit, watch, formState:{errors}} = useForm({
+        resolver:zodResolver(resumeSchema),
+        defaultValues: {
+            contactInfo: {},
+            summary: "",
+            skills: "",
+            experince: [],
+            education: [],
+            projects: [],
+        },
+    });
+
+    const {
+        loading: isSaving,
+        fn: saveResumeFn,
+        data: saveResult,
+        error: saveError,
+    } = useFetch(saveResume);
 
   return (
     <div>
