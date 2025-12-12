@@ -142,26 +142,26 @@ const ResumeBuilder = ({initialContent}) => {
                                     <p className="text-sm text-red-500">{errors.summary.message}</p>
                                 )}
                     </div>
-{/* 
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">Skills</h3>
-              <Controller
-                name="skills"
-                control={control}
-                render={({ field }) => (
-                  <Textarea
-                    {...field}
-                    className="h-32"
-                    placeholder="List your key skills..."
-                    error={errors.skills}
-                  />
-                )}
-              />
-              {errors.skills && (
-                <p className="text-sm text-red-500">{errors.skills.message}</p>
-              )}
-            </div>
 
+                    <div className="space-y-4">
+                        <h3 className="text-lg font-medium">Skills</h3>
+                        <Controller
+                            name="skills"
+                            control={control}
+                            render={({ field }) => (
+                                <Textarea
+                                    {...field}
+                                    className="h-32"
+                                    placeholder="List your key skills..."
+                                    error={errors.skills}
+                                />
+                            )}
+                        />
+                            {errors.skills && (
+                                <p className="text-sm text-red-500">{errors.skills.message}</p>
+                            )}
+                    </div>
+{/* 
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Work Experience</h3>
               <Controller
