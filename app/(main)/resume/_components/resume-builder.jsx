@@ -5,6 +5,7 @@ import { resumeSchema } from "@/app/lib/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
 import useFetch from "@/hooks/use-fetch";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Download, Save } from "lucide-react";
@@ -84,7 +85,7 @@ const ResumeBuilder = ({initialContent}) => {
                                 <Input
                                     {...register("contactInfo.mobile")}
                                     type="tel"
-                                    placeholder="+1 234 567 8900"
+                                    placeholder="+91 9876543210"
                                 />
                                     {errors.contactInfo?.mobile && (
                                         <p className="text-sm text-red-500">
@@ -122,26 +123,26 @@ const ResumeBuilder = ({initialContent}) => {
                             </div>
                         </div>
                     </div>
-{/* 
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">Professional Summary</h3>
-              <Controller
-                name="summary"
-                control={control}
-                render={({ field }) => (
-                  <Textarea
-                    {...field}
-                    className="h-32"
-                    placeholder="Write a compelling professional summary..."
-                    error={errors.summary}
-                  />
-                )}
-              />
-              {errors.summary && (
-                <p className="text-sm text-red-500">{errors.summary.message}</p>
-              )}
-            </div>
 
+                    <div className="space-y-4">
+                        <h3 className="text-lg font-medium">Professional Summary</h3>
+                            <Controller
+                                name="summary"
+                                control={control}
+                                render={({ field }) => (
+                                    <Textarea
+                                        {...field}
+                                        className="h-32"
+                                        placeholder="Write a compelling professional summary..."
+                                        error={errors.summary}
+                                    />
+                                )}
+                            />
+                                {errors.summary && (
+                                    <p className="text-sm text-red-500">{errors.summary.message}</p>
+                                )}
+                    </div>
+{/* 
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Skills</h3>
               <Controller
