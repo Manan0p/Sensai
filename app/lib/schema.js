@@ -1,4 +1,4 @@
-import z from "zod";
+import z, { email } from "zod";
 
 export const OnboardingSchema = z.object({
     industry: z.string({
@@ -25,4 +25,11 @@ export const OnboardingSchema = z.object({
                 .filter(Boolean)
             : undefined
         ),
+});
+
+export const contactSchema = z.object({
+    email: z.string().email("Invalid email address"),
+    mobile: z.string().optional(),
+    linkedin: z.string().optional(),
+    twitter: z.string().optional(),
 });
