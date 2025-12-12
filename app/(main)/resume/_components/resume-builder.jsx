@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Download, Save } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { EntryForm } from "./entry-form";
 
 const ResumeBuilder = ({initialContent}) => {
     const [activeTab, setActiveTab] = useState("edit");
@@ -68,7 +69,7 @@ const ResumeBuilder = ({initialContent}) => {
                     <div className="space-y-4">
                         <h3 className="text-lg font-medium">Contact Information</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border rounded-lg bg-muted/50">
-                            <div className="space-y-2">
+                            <div className="space-y-2" suppressHydrationWarning>
                                 <label className="text-sm font-medium">Email</label>
                                 <Input
                                     {...register("contactInfo.email")}
