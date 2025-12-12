@@ -41,4 +41,4 @@ export const entrySchema = z.object({
     endDate: z.string().optional(),
     description: z.string().min(1, "Description is required"),
     current: z.boolean().default(false),
-}):
+});
