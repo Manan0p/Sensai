@@ -40,6 +40,8 @@ const ResumeBuilder = ({initialContent}) => {
         if (initialContent) setActiveTab("preview");
     }, [initialContent]);
 
+    const onSubmit = async (data) =>{};
+
   return (
     <div>
         <div className="flex flex-col md:flex-row justify-between items-center gap-2">
@@ -62,7 +64,7 @@ const ResumeBuilder = ({initialContent}) => {
                 <TabsTrigger value="preview">Markdown</TabsTrigger>
             </TabsList>
             <TabsContent value="edit">
-                <form className="space-y-8">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                     <div className="space-y-4">
                         <h3 className="text-lg font-medium">Contact Information</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border rounded-lg bg-muted/50">
@@ -161,66 +163,66 @@ const ResumeBuilder = ({initialContent}) => {
                                 <p className="text-sm text-red-500">{errors.skills.message}</p>
                             )}
                     </div>
-{/* 
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">Work Experience</h3>
-              <Controller
-                name="experience"
-                control={control}
-                render={({ field }) => (
-                  <EntryForm
-                    type="Experience"
-                    entries={field.value}
-                    onChange={field.onChange}
-                  />
-                )}
-              />
-              {errors.experience && (
-                <p className="text-sm text-red-500">
-                  {errors.experience.message}
-                </p>
-              )}
-            </div>
 
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">Education</h3>
-              <Controller
-                name="education"
-                control={control}
-                render={({ field }) => (
-                  <EntryForm
-                    type="Education"
-                    entries={field.value}
-                    onChange={field.onChange}
-                  />
-                )}
-              />
-              {errors.education && (
-                <p className="text-sm text-red-500">
-                  {errors.education.message}
-                </p>
-              )}
-            </div>
+                    <div className="space-y-4">
+                        <h3 className="text-lg font-medium">Work Experience</h3>
+                        <Controller
+                            name="experience"
+                            control={control}
+                            render={({ field }) => (
+                                <EntryForm
+                                    type="Experience"
+                                    entries={field.value}
+                                    onChange={field.onChange}
+                                />
+                            )}
+                        />
+                            {errors.experience && (
+                                <p className="text-sm text-red-500">
+                                    {errors.experience.message}
+                                </p>
+                            )}
+                    </div>
 
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">Projects</h3>
-              <Controller
-                name="projects"
-                control={control}
-                render={({ field }) => (
-                  <EntryForm
-                    type="Project"
-                    entries={field.value}
-                    onChange={field.onChange}
-                  />
-                )}
-              />
-              {errors.projects && (
-                <p className="text-sm text-red-500">
-                  {errors.projects.message}
-                </p>
-              )} 
-                    </div>*/}
+                    <div className="space-y-4">
+                        <h3 className="text-lg font-medium">Education</h3>
+                        <Controller
+                            name="education"
+                            control={control}
+                            render={({ field }) => (
+                                <EntryForm
+                                    type="Education"
+                                    entries={field.value}
+                                    onChange={field.onChange}
+                                />
+                            )}
+                        />
+                            {errors.education && (
+                                <p className="text-sm text-red-500">
+                                    {errors.education.message}
+                                </p>
+                            )}
+                    </div>
+
+                    <div className="space-y-4">
+                        <h3 className="text-lg font-medium">Projects</h3>
+                        <Controller
+                            name="projects"
+                            control={control}
+                            render={({ field }) => (
+                                <EntryForm
+                                    type="Project"
+                                    entries={field.value}
+                                    onChange={field.onChange}
+                                />
+                            )}
+                        />
+                            {errors.projects && (
+                                <p className="text-sm text-red-500">
+                                    {errors.projects.message}
+                                </p>
+                            )} 
+                    </div>
                 </form>
             </TabsContent>
             <TabsContent value="preview">
