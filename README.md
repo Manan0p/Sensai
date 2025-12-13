@@ -164,16 +164,3 @@ Created with ❤️ for career professionals everywhere.
 ---
 
 **Ready to transform your career? Visit [SensAI](https://sensai-lyart.vercel.app/) today!**  
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/Manan0p/SensAI.git
-cd SensAI
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
