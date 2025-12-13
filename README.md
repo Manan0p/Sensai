@@ -148,7 +148,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for full details.
+
+The MIT License allows you to use, modify, and distribute this software freely, with minimal restrictions. A copy of the license is included in the repository root.
+
+**Copyright © 2025 Manan**
 
 ## 👨‍💻 Author
 
