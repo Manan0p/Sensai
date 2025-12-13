@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { OnboardingSchema } from "@/app/lib/schema";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
@@ -16,6 +15,7 @@ import { updateUser } from "@/actions/user";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { onboardingSchema } from "@/app/lib/schema";
 
 const OnboardingForm = ({ industries }) => {
   const [selectedIndustry, setselectedIndustry] = useState(null);
@@ -25,7 +25,7 @@ const OnboardingForm = ({ industries }) => {
   const {loading: updateLoading, fn: updateUserFn, data: updateResult,} = useFetch(updateUser);
 
   const {register, handleSubmit, formState:{errors}, setValue, watch,} = useForm({
-    resolver: zodResolver(OnboardingSchema),
+    resolver: zodResolver(onboardingSchema),
   });
 
   const onSubmit = async(values) => {
