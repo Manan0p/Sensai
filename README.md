@@ -23,7 +23,7 @@ SensAI combines modern web technologies with cutting-edge AI to provide personal
 - **Next.js 16** - React framework with app directory
 - **React 19** - UI library with latest features
 - **Tailwind CSS 4** - Utility-first styling
-- **Radix UI** - Accessible component primitives
+- **ShadCN UI** - Accessible component primitives
 - **React Hook Form** - Efficient form management
 - **Zod** - Type-safe schema validation
 - **Recharts** - Data visualization
