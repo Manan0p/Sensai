@@ -1,4 +1,4 @@
-# SensAI - AI Career Coach
+# SensAI: AI Career Coach
 
 **SensAI** is a comprehensive AI powered career development platform that helps professionals build resumes, generate cover letters, prepare for interviews, and gain industry-specific insights using advanced AI models.
 
