@@ -4,7 +4,7 @@
 
 ## 🎯 About SensAI
 
-SensAI combines modern web technologies with cutting-edge AI to provide personalized career guidance and professional development tools. Whether you're a student, job seeker, or career changer, SensAI offers intelligent features to accelerate your professional growth.
+SensAI combines modern web technologies with cutting edge AI to provide personalized career guidance and professional development tools. Whether you're a student, job seeker, or career changer, SensAI offers intelligent features to accelerate your professional growth.
 
 ## ✨ Features
 
