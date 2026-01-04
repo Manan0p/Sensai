@@ -1,20 +1,10 @@
-<<<<<<< HEAD
 # SensAI: AI Career Copilot
 
 **SensAI** is a modern AI-powered career platform that helps you **onboard your profile**, **build a resume**, **generate tailored cover letters**, **practice technical interviews**, and **get weekly industry insights** powered by Gemini.
-=======
-# SensAI: AI Career Coach
-
-**SensAI** is a comprehensive AI powered career development platform that helps professionals build resumes, generate cover letters, prepare for interviews, and gain industry-specific insights using advanced AI models.
->>>>>>> 0492cc0669d74c078e1454d0e71dc090aa6d2870
 
 **🌐 Live Demo:** https://sensai-lyart.vercel.app/
 
-<<<<<<< HEAD
 ## 🖼️ Product Tour
-=======
-SensAI combines modern web technologies with cutting edge AI to provide personalized career guidance and professional development tools. Whether you're a student, job seeker, or career changer, SensAI offers intelligent features to accelerate your professional growth.
->>>>>>> 0492cc0669d74c078e1454d0e71dc090aa6d2870
 
 Here’s a quick look at the app experience — from onboarding to insights and AI-assisted writing.
 
@@ -93,7 +83,6 @@ Great for learning/building:
 ## 🛠 Tech Stack
 
 ### Frontend
-<<<<<<< HEAD
 - **Next.js 16** - App Router
 - **React 19** - UI library
 - **Tailwind CSS v4** - Styling
@@ -103,16 +92,6 @@ Great for learning/building:
 - **Recharts** - Charts
 - **Lucide React** - Icons
 - **@uiw/react-md-editor** - Markdown editor
-=======
-- **Next.js 16** - React framework with app directory
-- **React 19** - UI library with latest features
-- **Tailwind CSS 4** - Utility-first styling
-- **ShadCN UI** - Accessible component primitives
-- **React Hook Form** - Efficient form management
-- **Zod** - Type-safe schema validation
-- **Recharts** - Data visualization
-- **Lucide React** - Icon library
->>>>>>> 0492cc0669d74c078e1454d0e71dc090aa6d2870
 
 ### Backend & Services
 - **Clerk** - Authentication
